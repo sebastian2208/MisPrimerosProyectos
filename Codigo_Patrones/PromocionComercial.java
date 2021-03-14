@@ -33,7 +33,7 @@ public class PromocionComercial implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         CuentaBanco ctaBanco = (CuentaBanco) evt.getSource();
 
-        if (!evt.getPropertyName().equals("SALARIO"))
+        if (!evt.getPropertyName().equals("saldo"))
             return;
 
         int saldoInicial = (int) evt.getOldValue();
@@ -44,7 +44,7 @@ public class PromocionComercial implements PropertyChangeListener {
             int cuantasVecesCondicionParaPromo = deposito / condicionParaPromo;
             int promoFinal = incentivoPromo * cuantasVecesCondicionParaPromo;
 
-            ctaBanco.setSalario(saldoFinal + promoFinal);
+            ctaBanco.setSaldo(saldoFinal + promoFinal);
         }
     }
 }

@@ -5,11 +5,11 @@ import java.beans.PropertyChangeSupport;
 public class CuentaBanco {
 
     private String cliente;
-    private int salario;
+    private int saldo;
     private PropertyChangeSupport cambios;
 
-    public CuentaBanco( String cliente, int salario) {
-        this.salario = salario;
+    public CuentaBanco( String cliente, int saldo) {
+        this.saldo = saldo;
         this.cliente = cliente;
         cambios = new PropertyChangeSupport(this);
     }
@@ -20,29 +20,29 @@ public class CuentaBanco {
 
     @Override
     public String toString() {
-        return "Cliente: " + cliente + "Salario: " + salario + " Bs";
+        return "Cliente: " + cliente + "Saldo: " + saldo + " Bs";
     }
 
     public void depositar(int i) {
-        int oldSaldo = salario;
-        salario += i;
+        int oldSaldo = saldo;
+        saldo += i;
 
-        cambios.firePropertyChange("SALARIO", oldSaldo, salario);
+        cambios.firePropertyChange("saldo", oldSaldo, saldo);
     }
 
     public void sacar(int i) {
-        int oldSaldo = salario;
-        salario-= i;
+        int oldSaldo = saldo;
+        saldo -= i;
 
-        cambios.firePropertyChange("SALARIO", oldSaldo, salario);
+        cambios.firePropertyChange("saldo", oldSaldo, saldo);
     }
 
-    public int getSalario() {
-        return salario;
+    public int getSaldo() {
+        return saldo;
     }
 
-    public void setSalario(int salario) {
-        this.salario = salario;
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
     }
 
     public String getCliente() {
