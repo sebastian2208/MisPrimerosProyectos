@@ -1,9 +1,11 @@
 package Proyectos.Codigo_Patrones;
 
 import java.beans.PropertyChangeSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CuentaBanco {
-
+    private static final Logger logger = LogManager.getRootLogger();
     private String cliente;
     private int saldo;
     private PropertyChangeSupport cambios;
@@ -12,6 +14,7 @@ public class CuentaBanco {
         this.saldo = saldo;
         this.cliente = cliente;
         cambios = new PropertyChangeSupport(this);
+        logger.info("Se esta creando un objeto de tipo cuenta para un banco");
     }
 
     public void addObserver(PromocionComercial promo) {
@@ -20,6 +23,7 @@ public class CuentaBanco {
 
     @Override
     public String toString() {
+        logger.info("Aqui retornamos el objeto creado mostrando los datos de la cuenta");
         return "Cliente: " + cliente + "Saldo: " + saldo + " Bs";
     }
 
@@ -28,6 +32,7 @@ public class CuentaBanco {
         saldo += i;
 
         cambios.firePropertyChange("saldo", oldSaldo, saldo);
+        logger.info("Aqui depositamos el saldo a nuestra cuenta y notificamos al observer");
     }
 
     public void sacar(int i) {
@@ -35,6 +40,7 @@ public class CuentaBanco {
         saldo -= i;
 
         cambios.firePropertyChange("saldo", oldSaldo, saldo);
+        logger.info("Aqui sacamos dinero de nuestra cuenta y notificamos al observer");
     }
 
     public int getSaldo() {
